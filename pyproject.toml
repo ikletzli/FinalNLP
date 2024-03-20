@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "FinalNLP"
+version = "0.1.0"
+description = "NLP Final Project - An implementation of the BitNet paper (https://arxiv.org/pdf/2402.17764.pdf)"
+authors = ["Andrew Lee <candrewlee14@gmail.com>", "Isaac Kletzli <isaackletzli@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = "^2.2.1"
+torchvision = "^0.17.1"
+torchaudio = "^2.2.1"
+
+
+[tool.poetry.group.dev.dependencies]
+nbdev = "^2.3.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

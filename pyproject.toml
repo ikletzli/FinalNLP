@@ -1,21 +1,25 @@
-[tool.poetry]
-name = "FinalNLP"
+[project]
+name = "finalnlp"
 version = "0.1.0"
-description = "NLP Final Project - An implementation of the BitNet paper (https://arxiv.org/pdf/2402.17764.pdf)"
-authors = ["Andrew Lee <candrewlee14@gmail.com>", "Isaac Kletzli <isaackletzli@gmail.com>"]
-license = "MIT"
+description = "Add your description here"
+dependencies = [
+    "torch>=2.2.1",
+    "torchvision>=0.17.1",
+    "torchaudio>=2.2.1",
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.10"
-torch = "^2.2.1"
-torchvision = "^0.17.1"
-torchaudio = "^2.2.1"
-
-
-[tool.poetry.group.dev.dependencies]
-nbdev = "^2.3.13"
+requires-python = ">= 3.8"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/finalnlp"]

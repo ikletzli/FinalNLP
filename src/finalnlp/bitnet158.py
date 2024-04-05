@@ -11,7 +11,7 @@ def activation_norm_quant(x: torch.Tensor):
         y: a quantized activation tensor with shape [n,d]
         scale: a scalar for dequantization with shape [1]
     """
-    x = RMSNorm(x)
+    x = RMSNorm(x.shape[1])(x)
     scale = 127.0 / x.abs().max(dim=-1, keepdim=True).values.clamp_(min=1e-5)
     y = (x * scale).round().clamp_(-128, 127)
     return y, scale
@@ -51,7 +51,7 @@ class BitLinear158B(nn.Linear):
         """
         if self.training:
             w = self.weight
-            x_norm = RMSNorm(x)
+            x_norm = RMSNorm(x.shape[1])(x)
             # A trick for implementing Straight-Through-Estimator (STE) using detach()
             x_quant = x_norm + (activation_quant(x_norm) - x_norm).detach()
             w_quant = w + (weight_quant(w) - w).detach()

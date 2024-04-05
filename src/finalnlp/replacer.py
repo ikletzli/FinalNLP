@@ -57,4 +57,4 @@ def replace_linears_in_pytorch_model(
             )
         else:
             # Recursively apply to child modules
-            replace_linears_in_pytorch_model(module)
+            replace_linears_in_pytorch_model(module, BitLinear)

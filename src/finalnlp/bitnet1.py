@@ -1,6 +1,6 @@
 from torch import Tensor, nn
 from torch.nn import functional as F
-from rmsnorm_torch import RMSNorm
+from finalnlp.rmsnorm_torch import RMSNorm
 
 def activation_quant(x: Tensor):
     """Per token quantization to 8bits. No grouping is needed for quantization
@@ -55,8 +55,9 @@ class BitLinear1B(nn.Linear):
 
         """
         b, s, d = x.shape
-        w = self.weight
-        x_norm = RMSNorm(d)(x)
+        w = self.weight.to(x.device)
+        rms = RMSNorm(d).to(x.device)
+        x_norm = rms(x)
 
         # STE using detach
         x_quant = x_norm + (activation_quant(x_norm) - x_norm).detach()

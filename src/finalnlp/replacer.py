@@ -27,7 +27,7 @@ def replace_linears_in_hf(
             )
         else:
             # Recursively apply to child modules
-            replace_linears_in_hf(module)
+            replace_linears_in_hf(module, BitLinear)
 
 
 def replace_linears_in_pytorch_model(

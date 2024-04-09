@@ -55,7 +55,7 @@ class BitLinear1B(nn.Linear):
 
         """
         b, s, d = x.shape
-        w = self.weight
+        w = self.weight.to(x.device)
         x_norm = RMSNorm(d)(x)
 
         # STE using detach

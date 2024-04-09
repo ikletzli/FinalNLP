@@ -42,7 +42,7 @@ class BitLinear158B(nn.Linear):
     """
     """
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor):
         """
         Args:
             x: an input tensor with shape [n,d]
@@ -50,7 +50,7 @@ class BitLinear158B(nn.Linear):
             y: an output tensor with shape [n,d]
         """
         if self.training:
-            w = self.weight
+            w = self.weight.to(x.device)
             x_norm = RMSNorm(x)
             # A trick for implementing Straight-Through-Estimator (STE) using detach()
             x_quant = x_norm + (activation_quant(x_norm) - x_norm).detach()
@@ -58,7 +58,7 @@ class BitLinear158B(nn.Linear):
             y = F.linear(x_quant, w_quant)
             return y
         else:
-            w = self.weight  # a 1.58-bit weight tensor with shape [d, k]
+            w = self.weight.to(x.device)  # a 1.58-bit weight tensor with shape [d, k]
             w_scale = (
                 self.weight_scale
             )  # a full precision weight scale tensor with shape [1]

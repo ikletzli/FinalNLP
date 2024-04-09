@@ -10,7 +10,7 @@ import torch.nn as nn
 
 
 class RMSNorm(nn.Module):
-    def __init__(self, d, p=-1., eps=1e-8, bias=False):
+    def __init__(self, d, p=-1., eps=1e-8, bias=False, device=None):
         """
             Root Mean Square Layer Normalization
         :param d: model size
@@ -32,6 +32,12 @@ class RMSNorm(nn.Module):
         if self.bias:
             self.offset = nn.Parameter(torch.zeros(d))
             self.register_parameter("offset", self.offset)
+
+        if device is not None:
+            self.device = device
+            self.scale = self.scale.to(device)
+            if self.bias:
+                self.offset = self.offset.to(device)
 
     def forward(self, x):
         if self.p < 0. or self.p > 1.:

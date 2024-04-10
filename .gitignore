@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 .direnv/
+
+src/finalnlp/vision_transformers/CIFAR/data
+src/finalnlp/vision_transformers/MNIST/data

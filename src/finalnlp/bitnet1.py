@@ -54,9 +54,8 @@ class BitLinear1B(nn.Linear):
             Tensor: The output tensor.
 
         """
-        b, s, d = x.shape
         w = self.weight.to(x.device)
-        rms = RMSNorm(d).to(x.device)
+        rms = RMSNorm(x.shape[x.dim() - 1]).to(x.device)
         x_norm = rms(x)
 
         # STE using detach

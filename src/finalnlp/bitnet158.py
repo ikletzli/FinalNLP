@@ -58,6 +58,8 @@ class BitLinear158B(nn.Linear):
 
         if self.training:
             self.wq_cache = weight_quant(w)
+        elif not hasattr(self, 'wq_cache'):
+            self.wq_cache = weight_quant(w)
         wq, w_scale = self.wq_cache
         w_quant = w + (wq/w_scale - w).detach()
         y = F.linear(x_quant, w_quant)

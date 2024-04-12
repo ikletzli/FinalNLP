@@ -153,8 +153,8 @@ def eval_split(model, trainer, train_dataset, test_dataset, split, max_batches):
 
 
 # Here are some example configurations for the model and the training loop
-length = 8
-num_digits = 4
+length = 6
+num_digits = 3
 val_check_interval = 1_000
 train_dataset = SortDataset('train', length=length, num_digits=num_digits, full_size=val_check_interval)
 test_dataset = SortDataset('test', length=length, num_digits=num_digits, full_size=val_check_interval)

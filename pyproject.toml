@@ -11,6 +11,10 @@ dependencies = [
     "lightning>=2.2.1",
     "wandb>=0.16.5",
     "matplotlib>=3.8.4",
+    "torchtext>=0.17.2",
+    "torchdata>=0.7.1",
+    "portalocker>=2.8.2",
+    "tiktoken>=0.6.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
